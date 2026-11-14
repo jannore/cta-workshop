@@ -54,7 +54,7 @@ long getDistance(int trigPin, int echoPin) {
 // Drive the left motor forward at the specified speed (0-255)
 void leftForward(int speed) {
   digitalWrite(LEFT_A1B, LOW);
-  analogWrite(LEFT_A1A, speed);
+  analogWrite(LEFT_A1A, speed*1.2);
 }
 
 // Drive the right motor forward at the specified speed (0-255)
@@ -89,9 +89,9 @@ void loop() {
   long distRight = getDistance(R_TRIG, R_ECHO);
   long distLeft  = getDistance(L_TRIG, L_ECHO);
 
-  Serial.print("Left: "); Serial.print(distLeft);
-  Serial.print(" cm, Right: "); Serial.print(distRight);
-  Serial.println(" cm");
+  //Serial.print("Left: "); Serial.print(distLeft);
+  //Serial.print(" cm, Right: "); Serial.print(distRight);
+  //Serial.println(" cm");
 
   if (distLeft < THRESHOLD_CM) {
     // Wall on the left: slow down the right wheel to turn right
@@ -109,5 +109,5 @@ void loop() {
     pointerServo.write(SERVO_STRAIGHT);
   }
 
-  delay(50);
+  delay(30);
 }
